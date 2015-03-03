@@ -78,10 +78,7 @@ module.exports  = function (params, callback) {
 
     sitemap.push({
       url: {
-        loc: url + '/' + filepath,
-        lastmod: date.toISOString(),
-        changefreq: changefreq,
-        priority: priority
+        loc: url + '/' + filepath
       }
     });
 
