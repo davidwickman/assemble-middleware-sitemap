@@ -76,9 +76,27 @@ module.exports  = function (params, callback) {
       filepath = getExternalFilePath(relativedest, file).replace("index.html", "");
     }
 
+    if (Date.prototype.toISOString) {
+      (function() {
+        function pad(number) {
+          if (number < 10) {
+            return '0' + number;
+          }
+          return number;
+        }
+        Date.prototype.toISOString = function() {
+          return this.getUTCFullYear() +
+            '-' + pad(this.getUTCMonth() + 1) +
+            '-' + pad(this.getUTCDate());
+          };
+        }()
+      );
+    }
+
     sitemap.push({
       url: {
-        loc: url + '/' + filepath
+        loc: url + '/' + filepath,
+        lastmod: date.toISOString()
       }
     });
 
