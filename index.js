@@ -121,7 +121,7 @@ module.exports  = function (params, callback) {
     var robot = "User-agent: *\n";
     
     robot += "Disallow:";
-    robot += robots.join('\n') + '\n\n';
+    robot += robots.join('\n') + '\n';
 
     robot += "Sitemap: " + getExternalFilePath(relativedest, sitemapFile);
     robot += "\n";
