@@ -66,7 +66,7 @@ module.exports  = function (params, callback) {
     var priority = file.data.priority || options.priority;
     var filepath = getExternalFilePath(relativedest, file);
     
-    if (file.data.pageName.indexOf('404') > -1 || exclusion.indexOf(file.basename) !== -1 || grunt.file.isMatch({srcBase: options.dest}, exclusion, file.dest)) {
+    if (file.data.services == -2 || exclusion.indexOf(file.basename) !== -1 || grunt.file.isMatch({srcBase: options.dest}, exclusion, file.dest)) {
         // Commenting this out since we are not using Disallow:
         // robots.push('Disallow: /' + getExternalFilePath(relativedest, file));
       return;
@@ -119,7 +119,8 @@ module.exports  = function (params, callback) {
   if (options.robot) {
     var sitemapFile = {dest: url+"/"+sitemapDest};
     var robot = "User-agent: *\n";
-
+    
+    robot += "Disallow:";
     robot += robots.join('\n') + '\n\n';
 
     robot += "Sitemap: " + getExternalFilePath(relativedest, sitemapFile);
